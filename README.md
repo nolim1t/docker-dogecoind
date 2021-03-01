@@ -6,6 +6,11 @@ Not directly affliated with LNCNM, but more a lighthearted version of crypto (an
 
 Also, setting this up helps me understand [docker-bitcoind](https://github.com/lncm/docker-bitcoind) which is used by many people to ensure quality.
 
+## Repo Mirrors
+
+* [Github](https://github.com/nolim1t/docker-dogecoind)
+* [Gitlab](https://gitlab.com/nolim1t/docker-dogecoind)
+
 ## Building
 
 ```bash
