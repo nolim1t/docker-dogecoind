@@ -6,6 +6,14 @@ Not directly affliated with LNCNM, but more a lighthearted version of crypto (an
 
 Also, setting this up helps me understand [docker-bitcoind](https://github.com/lncm/docker-bitcoind) which is used by many people to ensure quality.
 
+Also, I think it would be fun to run a dogecoin node in 2021.
+
+## Changes / Differences from bitcoin
+
+* No verification (reckless), because dogecoin. nuff said. Doesn't seem to be a PGP key I can use
+* binary files are different
+* port number would be different
+
 ## Repo Mirrors
 
 * [Github](https://github.com/nolim1t/docker-dogecoind)
