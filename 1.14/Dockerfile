@@ -136,12 +136,12 @@ RUN make -j$(( $(nproc) + 1 )) check
 RUN make install
 
 # List installed binaries pre-strip & strip them
-RUN ls -lh "$DOGECOIN_PREFIX/bin/"
-RUN strip -v "$DOGECOIN_PREFIX/bin/dogecoin"*
+RUN ls -lh "$PREFIX/bin/"
+RUN strip -v "$PREFIX/bin/dogecoin"*
 
 # List installed binaries post-strip & print their checksums
-RUN ls -lh "$DOGECOIN_PREFIX/bin/"
-RUN sha256sum "$DOGCOIN_PREFIX/bin/bitcoin"*
+RUN ls -lh "$PREFIX/bin/"
+RUN sha256sum "$PREFIX/bin/dogecoin"*
 
 
 
@@ -170,7 +170,7 @@ RUN apk add --no-cache \
         libstdc++ \
         libzmq
 
-COPY  --from=builder /opt/dogecoin-$VERSION/bin/bitcoin*  /usr/local/bin/
+COPY  --from=builder $PREFIX/bin/dogecoin*  /usr/local/bin/
 
 # NOTE: Default GID == UID == 1000
 RUN adduser --disabled-password \
@@ -180,19 +180,19 @@ RUN adduser --disabled-password \
 
 USER $USER
 
-# Prevents `VOLUME $DIR/.bitcoind/` being created as owned by `root`
 RUN mkdir -p "$DIR/.dogecoin/"
 
-# Expose volume containing all `bitcoind` data
 VOLUME $DIR/.dogecoin/
 
 # REST interface
 EXPOSE 8080
 
 # P2P network (mainnet, testnet & regnet respectively)
+# TODO: doge ports
 EXPOSE 8333 18333 18444
 
 # RPC interface (mainnet, testnet & regnet respectively)
+# TODO: doge ports
 EXPOSE 8332 18332 18443
 
 # ZMQ ports (for transactions & blocks respectively)
