@@ -165,6 +165,7 @@ RUN sed -i 's|http://dl-cdn.alpinelinux.org|https://alpine.global.ssl.fastly.net
 RUN apk add --no-cache \
         boost-filesystem \
         boost-thread \
+        boost-dev \
         libevent \
         libsodium \
         libstdc++ \
