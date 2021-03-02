@@ -103,7 +103,9 @@ RUN apk add --no-cache \
         libtool \
         linux-headers \
         zeromq-dev \
-        openssl-dev
+        openssl-dev \
+        db \
+        db-dev
 
 # Fetch pre-built berkeleydb
 COPY  --from=berkeleydb /opt/  /opt/
@@ -130,18 +132,13 @@ RUN ./configure \
     --without-libs \
     --with-utils \
     --with-daemon \
-    --disable-wallet
+    --with-incompatible-bdb
 
 RUN make -j$(( $(nproc) + 1 )) check
 RUN make install
 
-# List installed binaries pre-strip & strip them
+# List installed binaries
 RUN ls -lh "$PREFIX/bin/"
-RUN strip -v "$PREFIX/bin/dogecoin"*
-
-# List installed binaries post-strip & print their checksums
-RUN ls -lh "$PREFIX/bin/"
-RUN sha256sum "$PREFIX/bin/dogecoin"*
 
 
 
@@ -169,7 +166,9 @@ RUN apk add --no-cache \
         libevent \
         libsodium \
         libstdc++ \
-        libzmq
+        libzmq \
+        db \
+        db-dev
 
 COPY  --from=builder $PREFIX/bin/dogecoin*  /usr/local/bin/
 
@@ -199,5 +198,3 @@ EXPOSE 22555
 EXPOSE 28332 28333
 
 ENTRYPOINT ["dogecoind"]
-
-CMD ["-zmqpubrawblock=tcp://0.0.0.0:28332", "-zmqpubrawtx=tcp://0.0.0.0:28333"]
