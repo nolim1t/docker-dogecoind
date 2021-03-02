@@ -188,15 +188,14 @@ VOLUME $DIR/.dogecoin/
 # REST interface
 EXPOSE 8080
 
-# P2P network (mainnet, testnet & regnet respectively)
-# TODO: doge ports
-EXPOSE 8333 18333 18444
+# Doge P2P ports
+EXPOSE 22556
 
-# RPC interface (mainnet, testnet & regnet respectively)
-# TODO: doge ports
-EXPOSE 8332 18332 18443
+# Doge RPC Ports
+EXPOSE 22555 
 
 # ZMQ ports (for transactions & blocks respectively)
+# Unsure if these actually work?
 EXPOSE 28332 28333
 
 ENTRYPOINT ["dogecoind"]
