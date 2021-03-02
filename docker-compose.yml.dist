@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+    doge:
+        image: nolim1t/dogecoin:latest
+        container_name: dogecoin
+        network_mode: host
+        restart: on-failure
+        volumes:
+            - "${HOME}/.dogecoin:/data/.dogecoin"
