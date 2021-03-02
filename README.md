@@ -44,7 +44,7 @@ This allows for running dogecoind without having to do any manual configuration.
 ## Running
 
 ```bash
-docker run --it \
+docker run -it --rm \
 	--name dogecoin \
 	-v $HOME:/data \
 	nolim1t/dogecoin
